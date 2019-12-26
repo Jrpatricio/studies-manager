@@ -8,25 +8,24 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 
-//@Entity
-//@Table(name = "publicacao")
-//@Inheritance(strategy = InheritanceType.JOINED)
-public class Publicacao {
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Publicacao {
 
-   // @Id
-   // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
-    //@NotBlank
-    //@Column(name = "AUTOR")
+    @NotBlank
+    @Column(name = "AUTOR")
     private String autor;
 
-    //@NotNull
-    //@Column(name = "PUBLISHED_AT")
+    @NotNull
+    @Column(name = "PUBLISHED_AT")
     private LocalDate published;
 
-    //@NotNull
-    //@Column(name = "RELEVANCIA")
+    @NotNull
+    @Column(name = "RELEVANCIA")
     private Integer relevancia;
 
     public Long getId() {

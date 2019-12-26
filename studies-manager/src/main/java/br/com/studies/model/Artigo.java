@@ -1,25 +1,21 @@
 package br.com.studies.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
 public class Artigo extends Publicacao implements Serializable {
 
-    private Long id;
-
+    @NotBlank
+    @Column(name = "NOME")
     private String nome;
 
+    @NotBlank
+    @Column(name = "DESCRICAO")
     private String descricao;
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
@@ -42,11 +38,12 @@ public class Artigo extends Publicacao implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Artigo artigo = (Artigo) o;
-        return id.equals(artigo.id);
+        return Objects.equals(nome, artigo.nome) &&
+                Objects.equals(descricao, artigo.descricao);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(nome, descricao);
     }
 }
